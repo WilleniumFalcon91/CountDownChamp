@@ -5,18 +5,22 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            deadline: "December 25, 2017"
+            deadline: "December 25, 2017",
+            newDealine: ''
         }
     }
 
     changeDealine() {
-        this.setState({deadline: 'Novemeber 25, 2017'})
+        // console.log('state', this.state);
+        this.setState({deadline: this.state.newDealine});
     }
 
     render() {
         return(
             <div className="App">
-                <div className="App-title">Countdown to {this.state.deadline}</div>
+                <div className="App-title">
+                    Countdown to {this.state.deadline}
+                </div>
                 <div>
                     <div className="Clock-days">14 Days</div>
                     <div className="Clock-hours">30 Hours</div>
@@ -24,7 +28,10 @@ class App extends Component {
                     <div className="Clock-seconds">20 Seconds</div>
                 </div>
                 <div>
-                    <input placeholder="new date" />
+                    <input 
+                        placeholder="new date"
+                        onChange={event => this.setState({newDealine: event.target.value})}
+                     />
                     <button onClick={() => this.changeDealine()}>Submit</button>
                 </div>
                 
